@@ -18,7 +18,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const Header = (props ) => {
+const Header2 = (props ) => {
   const classes = useStyles();
   const name = props.name
   const navigate = useNavigate();
@@ -38,4 +38,4 @@ const Header = (props ) => {
   );
 };
 
-export default Header;
+export default Header2;
