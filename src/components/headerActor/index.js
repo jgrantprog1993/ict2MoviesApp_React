@@ -5,6 +5,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import Paper from "@material-ui/core/Paper";
 import IconButton from "@material-ui/core/IconButton";
 import Typography from "@material-ui/core/Typography";
+import HomeIcon from "@material-ui/icons/Home";
 import { useNavigate } from "react-router-dom";
 
 
@@ -14,22 +15,31 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: "space-around",
     alignItems: "center",
     flexWrap: "wrap",
-    marginBottom: theme.spacing(1.5),
+    padding: theme.spacing(1.5),
+  },
+  tagLine: {
+    fontSize: "1.5rem",
   },
 }));
 
-const Header = (props ) => {
-  const classes = useStyles();
-  const name = props.name
-  const navigate = useNavigate();
+const ActorHeader = (props) => {
+    const navigate = useNavigate();
+    const classes = useStyles();
+    const actor = props.actor;
+
   return (
     <Paper component="div" className={classes.root}>
-       <IconButton aria-label="go back"  onClick={() => navigate(-1)}>
+      <IconButton aria-label="go back"  onClick={() => navigate(-1)}>
         <ArrowBackIcon color="primary" fontSize="large" />
       </IconButton>
 
       <Typography variant="h4" component="h3">
-        {name}
+        {actor.title}
+        <a href={actor.homepage}>
+          <HomeIcon color="primary" />
+        </a>
+        <br />
+        <span className={classes.tagLine}>{`   "${actor.tagline}"`} </span>
       </Typography>
       <IconButton aria-label="go forward"  onClick={() => navigate(1)}>
         <ArrowForwardIcon color="primary" fontSize="large" />
@@ -38,4 +48,4 @@ const Header = (props ) => {
   );
 };
 
-export default Header;
+export default ActorHeader;
