@@ -1,12 +1,14 @@
 import React from "react";
 import PageTemplate from "../components/templateActorListPage";
 import { useQuery } from 'react-query'
+import { useParams } from "react-router-dom";
 import Spinner from '../components/spinner'
 import {getPopularActors} from '../api/tmdb-api'
 import AddToFavouritesIcon from '../components/cardIcons/addToFavourites'
 
-const HomePage = (props) => {
-  const {  data, error, isLoading, isError }  = useQuery('people', getPopularActors)
+const PopularActorsPage = (props) => {
+  const { id } = useParams();
+  const {  data, error, isLoading, isError }  = useQuery(['actor', {id: id}], getPopularActors)
 
   if (isLoading) {
     return <Spinner />
@@ -29,4 +31,4 @@ const HomePage = (props) => {
 );
 };
 
-export default HomePage;
+export default PopularActorsPage;

@@ -100,3 +100,41 @@ export const getMovies = () => {
           throw error
         });
       };
+
+      export const getActorsImages = ({ queryKey }) => {
+        const [, idPart] = queryKey;
+        const { id } = idPart;
+        console.log('queryKey:', queryKey);
+        console.log('id:', id);
+
+        return fetch(
+          `https://api.themoviedb.org/3/person/${id}/images?api_key=${process.env.REACT_APP_TMDB_KEY}`
+        ).then( (response) => {
+          if (!response.ok) {
+            throw new Error(response.json().message);
+          }
+         
+          return response.json
+      
+        })
+        .catch((error) => {
+          throw error
+       });
+      };
+
+      export const getActorDetails = (args)=> {
+        // console.log(args)
+        const [, idPart] = args.queryKey;
+        const { id } = idPart;
+        return fetch(
+          `https://api.themoviedb.org/3/person/${id}?api_key=${process.env.REACT_APP_TMDB_KEY}`
+        ).then((response) => {
+          if (!response.ok) {
+            throw new Error(response.json().message);
+            }
+            return response.json();
+          })
+          .catch((error) => {
+            throw error
+        });
+      };

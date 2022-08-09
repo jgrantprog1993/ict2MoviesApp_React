@@ -1,7 +1,7 @@
 import React from "react";
 import { useQuery } from 'react-query'
 import Spinner from '../components/spinner'
-import PageTemplate from '../components/templateMovieListPage'
+import MovieListPageTemplate from '../components/templateMovieListPage'
 import AddToWatchLaterlistIcon from  "../components/cardIcons/addToWatchLaterlistIcon.js";
 import {  getUpcomingMovies } from "../api/tmdb-api";
 
@@ -20,7 +20,7 @@ const UpcomingMoviesPage = (props) => {
   const movies = data.results;
   
   return (
-    <PageTemplate
+    <MovieListPageTemplate
       title='Upcoming  Movies'
       movies={movies}
       action={(movie) => {
