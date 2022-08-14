@@ -164,3 +164,38 @@ export const getMovies = () => {
           throw error
        });
       };
+
+      export const getTVShows = () => {
+        console.log(' TVShows - >' + `https://api.themoviedb.org/3/tv/popular?api_key=${process.env.REACT_APP_TMDB_KEY}&language=en-US&isort_by=popularity.desc&page=1&timezone=America%2FNew_York&include_null_first_air_dates=false&with_watch_monetization_types=flatrate&with_status=0&with_type=0`);
+        return fetch(
+          `https://api.themoviedb.org/3/tv/popular?api_key=${process.env.REACT_APP_TMDB_KEY}&language=en-US&isort_by=popularity.desc&page=1&timezone=America%2FNew_York&include_null_first_air_dates=false&with_watch_monetization_types=flatrate&with_status=0&with_type=0`
+        ).then((response) => {
+          if (!response.ok) {
+            throw new Error(response.json().message);
+          }
+          return response.json();
+        })
+        .catch((error) => {
+           throw error
+        });
+      };
+
+
+      export const getTVShow = (args)=> {
+        console.log('argsTVShow = ' + args)
+        const [, idPart] = args.queryKey;
+        const { id } = idPart;
+        return fetch(
+          `https://api.themoviedb.org/3/tv/${id}?api_key=${process.env.REACT_APP_TMDB_KEY}`
+        ).then((response) => {
+          if (!response.ok) {
+            throw new Error(response.json().message);
+            }
+            //console.log('responseMovie= ' + response.json())
+            return response.json();
+          })
+          .catch((error) => {
+            throw error
+        });
+      };
+
