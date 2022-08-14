@@ -26,7 +26,7 @@ const MovieHeader = (props) => {
     const navigate = useNavigate();
     const classes = useStyles();
     const movie = props.movie;
-
+    console.log('Result Movie->' + movie)
   return (
     <Paper component="div" className={classes.root}>
       <IconButton aria-label="go back"  onClick={() => navigate(-1)}>

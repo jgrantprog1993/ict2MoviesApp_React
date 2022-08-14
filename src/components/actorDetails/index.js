@@ -42,12 +42,26 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const ActorDetails = ( {actor}) => {
+const ActorDetails = ({ actor }) => {
   const classes = useStyles();
-  const [drawerOpen, setDrawerOpen] = useState(false); // New
-
+  
   return (
     <>
+      <Typography variant="h5" component="h3">
+        AKA: 
+      </Typography>
+      <Typography variant="h6" component="p">
+        {actor.also_known_as}
+      </Typography>
+      <Typography variant="h5" component="h3">
+        From: <Typography variant="h6" component="p">
+        {actor.aplace_of_birth}
+      </Typography>
+      </Typography>
+      
+      <Typography variant="h6" component="p">
+        {actor.also_known_as}
+      </Typography>
       <Typography variant="h5" component="h3">
         Biography
       </Typography>
@@ -55,43 +69,8 @@ const ActorDetails = ( {actor}) => {
       <Typography variant="h6" component="p">
         {actor.biography}
       </Typography>
-      <div className={classes.chipRoot}>
-      <Paper component="ul" className={classes.chipSet}>
-        <li>
-          <Chip label="Genres" className={classes.chipLabel} color="primary" />
-        </li>
-        {actor.genres.map((g) => (
-          <li key={g.name}>
-            <Chip label={g.name} className={classes.chip} />
-          </li>
-        ))}
-      </Paper>
-      <Paper component="ul" className={classes.chipSet}>
-        <Chip icon={<AccessTimeIcon />} label={`${actor.runtime} min.`} />
-        <Chip
-          icon={<MonetizationIcon />}
-          label={`${actor.revenue.toLocaleString()}`}
-        />
-        <Chip
-          icon={<StarRate />}
-          label={`${actor.vote_average} (${actor.vote_count}`}
-        />
-        <Chip label={`Released: ${actor.release_date}`} />
-      </Paper>
-      </div>
-      {/* New */}
-      <Fab    
-        color="secondary"
-        variant="extended"
-        onClick={() =>setDrawerOpen(true)}
-        className={classes.fab}
-      >
-        <NavigationIcon />
-        Reviews
-      </Fab>
-      <Drawer anchor="top" open={drawerOpen} onClose={() => setDrawerOpen(false)}>
+     
       
-      </Drawer>
     </>
   );
 };

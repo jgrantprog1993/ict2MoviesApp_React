@@ -25,8 +25,9 @@ const useStyles = makeStyles((theme) => ({
 const ActorHeader = (props) => {
     const navigate = useNavigate();
     const classes = useStyles();
+    console.log('Result ->' + props.actor)
     const actor = props.actor;
-
+    
   return (
     <Paper component="div" className={classes.root}>
       <IconButton aria-label="go back"  onClick={() => navigate(-1)}>
@@ -34,12 +35,9 @@ const ActorHeader = (props) => {
       </IconButton>
 
       <Typography variant="h4" component="h3">
-        {actor.title}
-        <a href={actor.homepage}>
-          <HomeIcon color="primary" />
-        </a>
+        {actor.name} 
+      
         <br />
-        <span className={classes.tagLine}>{`   "${actor.tagline}"`} </span>
       </Typography>
       <IconButton aria-label="go forward"  onClick={() => navigate(1)}>
         <ArrowForwardIcon color="primary" fontSize="large" />

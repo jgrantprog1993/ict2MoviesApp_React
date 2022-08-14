@@ -8,6 +8,7 @@ import { getActorsImages } from "../../api/tmdb-api";
 import { useQuery } from "react-query";
 import Spinner from '../spinner'
 
+
 const useStyles = makeStyles((theme) => ({
   root: {
     paddingTop: theme.spacing(7),
@@ -23,13 +24,14 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const TemplateActorPage = ({ actor, children }) => {
+const TemplateActorPage = ({actor, children }) => {
   const classes = useStyles();
-  const { data , error, isLoading, isError } = useQuery(
-    ["images", { id: actor.id }],
+  console.log('ActorImagesID - ' + actor.id)
+  //console.log('ActorImagesID - ' + id)
+  const { data, error, isLoading, isError } = useQuery(
+    ["Actorimages", { id: actor.id }],
     getActorsImages
   );
-  console.log(actor.id)
 
 
   if (isLoading) {
@@ -39,33 +41,38 @@ const TemplateActorPage = ({ actor, children }) => {
   if (isError) {
     return <h1>{error.message}</h1>;
   }
-  const images = data.profile_path
+  
+  
+  const images = data.profiles;
+  console.log('images - ' + images )
+
+
+  console.log('actor - ' + data.id);
+
   return (
     <div className={classes.root}>
-        <ActorHeader actor={actor} />
-
-      <Grid container spacing={5} style={{ padding: "15px" }}>
-        <Grid item xs={3}>
-          <div className={classes.imageListRoot}>
-            <ImageList rowHeight={500} className={classes.gridList} cols={1}>
-              {images.map((image) => (
-                <ImageListItem key={image.profile_path} cols={1}>
-                  <img
-                    src={`https://image.tmdb.org/t/p/w500/${image.profile_path}`}
-                    alt={image.profile_path}
-                  />
-                </ImageListItem>
-              ))}
-            </ImageList>
-          </div>
-        </Grid>
-
-        <Grid item xs={9}>
-          {children}
-        </Grid>
+    <ActorHeader actor={actor} />
+    <Grid container spacing={5} style={{ padding: '15px' }}>
+      <Grid item xs={3}>
+        <div className={classes.imageListRoot}>
+          <ImageList rowHeight={500} className={classes.gridList} cols={1}>
+            {images.map((image) => (
+              <ImageListItem key={image.file_path} cols={1}>
+                <img
+                  src={`https://image.tmdb.org/t/p/w500/${image.file_path}`}
+                  alt={image.file_path}
+                />
+              </ImageListItem>
+            ))}
+          </ImageList>
+        </div>
       </Grid>
-    </div>
-  );
-};
 
+      <Grid item xs={9}>
+        {children}
+      </Grid>
+    </Grid>
+  </div>
+);
+};
 export default TemplateActorPage;

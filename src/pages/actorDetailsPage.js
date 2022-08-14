@@ -2,13 +2,15 @@ import React from "react";
 import { useParams } from "react-router-dom";
 import ActorDetails from "../components/actorDetails";
 import PageTemplate from "../components/templateActorPage";
-// import useMovie from "../hooks/useMovie";
+// import useActor from "../hooks/useActor";
 import { getActorDetails } from '../api/tmdb-api'
 import { useQuery } from "react-query";
 import Spinner from '../components/spinner'
 
-const ActorDetailsPage = () => {
+
+const ActorDetailsPage = (props) => {
   const { id } = useParams();
+  console.log('ActorDetailsPage - ' + id )
   const { data: actor, error, isLoading, isError } = useQuery(
     ["actor", { id: id }],
     getActorDetails
