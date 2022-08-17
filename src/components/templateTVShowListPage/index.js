@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import Header from "../headerTVShowList";
-// import FilterCard from "../filterMoviesCard";
+import FilterCard from "../filterTVShows";
 import Grid from "@material-ui/core/Grid";
 import Fab from "@material-ui/core/Fab";
 import Drawer from "@material-ui/core/Drawer";
@@ -64,6 +64,11 @@ function TVShowListPageTemplate({ tvShows, title, action }) {
         open={drawerOpen}
         onClose={() => setDrawerOpen(false)}
       >
+        <FilterCard
+          onUserInput={handleChange}
+          titleFilter={titleFilter}
+          genreFilter={genreFilter}
+        />
         
       </Drawer>
     </>    
