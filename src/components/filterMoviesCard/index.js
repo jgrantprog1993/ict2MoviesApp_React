@@ -38,6 +38,8 @@ export default function FilterMoviesCard(props) {
     return <h1>{error.message}</h1>;
   }
   const genres = data.genres;
+  console.log('genres - ')
+  console.log(genres)
   if (genres[0].name !== "All"){
     genres.unshift({ id: "0", name: "All" });
   }
@@ -48,7 +50,7 @@ export default function FilterMoviesCard(props) {
   };
 
   const handleTextChange = (e, props) => {
-    handleChange(e, "name", e.target.value);
+    handleChange(e, "title", e.target.value);
   };
 
   const handleGenreChange = (e) => {

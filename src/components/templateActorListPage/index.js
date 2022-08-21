@@ -23,22 +23,22 @@ const useStyles = makeStyles((theme) =>  ({
 function ActorListPageTemplate({ actors, name, action }) {
   const classes = useStyles();
   const [nameFilter, setNameFilter] = useState("");
-  const [genreFilter, setgenreFilter] = useState("0");
+  const [genderFilter, setgenderFilter] = useState("0");
   const [drawerOpen, setDrawerOpen] = useState(false);
 
-  const genreId = Number(genreFilter);
+  const genderId = Number(genderFilter);
 
   let displayedActors = actors
     .filter((m) => {
       return m.name.toLowerCase().search(nameFilter.toLowerCase()) !== -1;
     })
     .filter((m) => {
-      return genreId > 0 ? m.genre_ids.includes(genreId) : true;
+      return genderId > 0 ? m.gender === genderId : true;
     });
 
   const handleChange = (type, value) => {
     if (type === "name") setNameFilter(value);
-    else setgenreFilter(value);
+    else setgenderFilter(value);
   };
 
   return (
@@ -67,7 +67,7 @@ function ActorListPageTemplate({ actors, name, action }) {
         <FilterActorsCard
           onUserInput={handleChange}
           titleFilter={nameFilter}
-          genreFilter={genreFilter}
+          genderFilter={genderFilter}
         />
       </Drawer>
     </>    
