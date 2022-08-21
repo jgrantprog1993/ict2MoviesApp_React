@@ -33,14 +33,14 @@ e.g.
 
 >List Actors, TVShows from Endpoint
 
-![][d1]
-![][d2]
+[d1](/public/assests/Actors.jpg)
+[d2](/public/assests/TVShows.jpg)
 
 >Shows detailed information on a specific Actor, TVShow
 
-![][detail1]
+[detail1]
 
-![][detail2]
+[detail2]
 
 ## Caching.
 
