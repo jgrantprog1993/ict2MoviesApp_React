@@ -33,7 +33,7 @@ function ActorListPageTemplate({ actors, name, action }) {
       return m.name.toLowerCase().search(nameFilter.toLowerCase()) !== -1;
     })
     .filter((m) => {
-      return genderId > 0 ? m.gender.includes(genderId) : true;
+      return genderId > 0 ? m.gender === genderId : true;
     });
 
   const handleChange = (type, value) => {

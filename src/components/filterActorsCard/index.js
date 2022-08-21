@@ -9,7 +9,6 @@ import TextField from "@material-ui/core/TextField";
 import SearchIcon from "@material-ui/icons/Search";
 import FormControl from "@material-ui/core/FormControl";
 import Select from "@material-ui/core/Select";
-import { getPopularActorsPopularity } from "../../api/tmdb-api";
 import { useQuery } from "react-query";
 import Spinner from '../spinner'
 
@@ -28,23 +27,24 @@ const useStyles = makeStyles((theme) => ({
   const genders = {
     genders:[
       {
-        "id": 1,
-        "name": "Male"
+        "id": 0,
+        "name": "ALL"
       },
       {
         "id": 2,
+        "name": "Male"
+      },
+      {
+        "id": 1,
         "name": "Female"
       },
     ]
   }
 export default function FilterActorsCard(props) {
   const classes = useStyles();
-
+  
   console.log('genders - ')
-  console.log(genders.genders)
-  if (genders.genders.name !== "All"){
-    genders.genders.unshift({ id: "0", name: "All" });
-  }
+  console.log(genders)
 
   const handleChange = (e, type, value) => {
     e.preventDefault();
@@ -55,7 +55,7 @@ export default function FilterActorsCard(props) {
     handleChange(e, "name", e.target.value);
   };
 
-  const handleGenreChange = (e) => {
+  const handleGenderChange = (e) => {
     handleChange(e, "gender", e.target.value);
   };
 
@@ -83,7 +83,7 @@ export default function FilterActorsCard(props) {
                 labelId="gender-label"
                 id="gender-select"
                 value={props.genderFilter}
-                onChange={handleGenreChange}
+                onChange={handleGenderChange}
             >
             {genders.genders.map((gender) => {
               return (
