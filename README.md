@@ -34,7 +34,6 @@ e.g.
 >List Actors, TVShows from Endpoint
 
 ![][d1]
-
 ![][d2]
 
 >Shows detailed information on a specific Actor, TVShow
@@ -42,6 +41,7 @@ e.g.
 ![][detail1]
 
 ![][detail2]
+
 ## Caching.
 
 See Screenshot
