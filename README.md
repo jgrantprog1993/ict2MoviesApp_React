@@ -53,8 +53,8 @@ e.g.
 
 ![][caching]
 
-[d1]: ./public/assests/Actors.png
-[d2]: ./public/assests/TVShow.JPG
-[detail1]: .public/assets/actor.jpg
-[detail2]: .public/assets/tvShow.jpg
+[d1]: ./public/assests/Actors.jpg
+[d2]: ./public/assests/TVShows.jpg
+[detail1]: ./public/assets/actor.jpg
+[detail2]: ./public/assets/tvShow.jpg
 [caching]: ./public/assets/caching.jpg
