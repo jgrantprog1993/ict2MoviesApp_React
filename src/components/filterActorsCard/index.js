@@ -9,7 +9,6 @@ import TextField from "@material-ui/core/TextField";
 import SearchIcon from "@material-ui/icons/Search";
 import FormControl from "@material-ui/core/FormControl";
 import Select from "@material-ui/core/Select";
-import { getGenres } from "../../api/tmdb-api";
 import { useQuery } from "react-query";
 import Spinner from '../spinner'
 
@@ -25,24 +24,27 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: "rgb(255, 255, 255)",
   },
 }));
-
-export default function FilterMoviesCard(props) {
+  const genders = {
+    genders:[
+      {
+        "id": 0,
+        "name": "ALL"
+      },
+      {
+        "id": 2,
+        "name": "Male"
+      },
+      {
+        "id": 1,
+        "name": "Female"
+      },
+    ]
+  }
+export default function FilterActorsCard(props) {
   const classes = useStyles();
-  const { data, error, isLoading, isError } = useQuery("genres", getGenres);
-
-  if (isLoading) {
-    return <Spinner />;
-  }
-
-  if (isError) {
-    return <h1>{error.message}</h1>;
-  }
-  const genres = data.genres;
-  console.log('genres - ')
-  console.log(genres)
-  if (genres[0].name !== "All"){
-    genres.unshift({ id: "0", name: "All" });
-  }
+  
+  console.log('genders - ')
+  console.log(genders)
 
   const handleChange = (e, type, value) => {
     e.preventDefault();
@@ -50,11 +52,11 @@ export default function FilterMoviesCard(props) {
   };
 
   const handleTextChange = (e, props) => {
-    handleChange(e, "title", e.target.value);
+    handleChange(e, "name", e.target.value);
   };
 
-  const handleGenreChange = (e) => {
-    handleChange(e, "genre", e.target.value);
+  const handleGenderChange = (e) => {
+    handleChange(e, "gender", e.target.value);
   };
 
   
@@ -64,7 +66,7 @@ export default function FilterMoviesCard(props) {
       <CardContent>
         <Typography variant="h5" component="h1">
           <SearchIcon fontSize="large" />
-          Filter the movies.
+          Actors
         </Typography>
         <TextField
             className={classes.formControl}
@@ -76,19 +78,20 @@ export default function FilterMoviesCard(props) {
             onChange={handleTextChange}
         />
         <FormControl className={classes.formControl}>
-          <InputLabel id="genre-label">Genre</InputLabel>
+          <InputLabel id="gender-label">Gender</InputLabel>
             <Select
-                labelId="genre-label"
-                id="genre-select"
-                value={props.genreFilter}
-                onChange={handleGenreChange}
+                labelId="gender-label"
+                id="gender-select"
+                value={props.genderFilter}
+                onChange={handleGenderChange}
             >
-            {genres.map((genre) => {
+            {genders.genders.map((gender) => {
               return (
-                <MenuItem key={genre.id} value={genre.id}>
-                  {genre.name}
+                <MenuItem key={gender.id} value={gender.id}>
+                  {gender.name}
                 </MenuItem>
               );
+              
             })}
           </Select>
         </FormControl>
@@ -98,7 +101,7 @@ export default function FilterMoviesCard(props) {
         <CardContent>
           <Typography variant="h5" component="h1">
             <SearchIcon fontSize="large" />
-            Sort the movies.
+            Sort the Actors
           </Typography>
         </CardContent>
       </Card>

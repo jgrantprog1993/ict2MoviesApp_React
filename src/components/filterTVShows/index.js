@@ -9,7 +9,7 @@ import TextField from "@material-ui/core/TextField";
 import SearchIcon from "@material-ui/icons/Search";
 import FormControl from "@material-ui/core/FormControl";
 import Select from "@material-ui/core/Select";
-import { getGenres } from "../../api/tmdb-api";
+import { getGenresTVShows } from "../../api/tmdb-api";
 import { useQuery } from "react-query";
 import Spinner from '../spinner'
 
@@ -26,9 +26,9 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function FilterMoviesCard(props) {
+export default function FilterTVShowsCard(props) {
   const classes = useStyles();
-  const { data, error, isLoading, isError } = useQuery("genres", getGenres);
+  const { data, error, isLoading, isError } = useQuery("genres", getGenresTVShows);
 
   if (isLoading) {
     return <Spinner />;
@@ -38,8 +38,6 @@ export default function FilterMoviesCard(props) {
     return <h1>{error.message}</h1>;
   }
   const genres = data.genres;
-  console.log('genres - ')
-  console.log(genres)
   if (genres[0].name !== "All"){
     genres.unshift({ id: "0", name: "All" });
   }
@@ -50,7 +48,7 @@ export default function FilterMoviesCard(props) {
   };
 
   const handleTextChange = (e, props) => {
-    handleChange(e, "title", e.target.value);
+    handleChange(e, "name", e.target.value);
   };
 
   const handleGenreChange = (e) => {
@@ -98,7 +96,7 @@ export default function FilterMoviesCard(props) {
         <CardContent>
           <Typography variant="h5" component="h1">
             <SearchIcon fontSize="large" />
-            Sort the movies.
+            Sort the TV Shows.
           </Typography>
         </CardContent>
       </Card>
