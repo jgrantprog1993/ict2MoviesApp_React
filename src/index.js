@@ -38,12 +38,12 @@ const App = () => {
             <Route path="/movies/favourites" element={<FavouriteMoviesPage/>}/>
             <Route path="/reviews/form" element={<AddMovieReviewPage/>} />
             <Route path="/movies/:id" element={<MoviePage/>} />
-            <Route path="/actor/:id" element={<ActorPage/>} />
             <Route path="/" element={<HomePage />} />
             <Route path="*" element={<Navigate to="/" replace />} />
             <Route path="/person/popular" element={<PopularActorsPage/>} />
             <Route path="/tv/popular" element={<PopularTVShowsPage/>} />
             <Route path="/tv/:id" element={<TVShowPage/>} />
+            <Route path="/actor/:id" element={<ActorPage/>} />
 
           </Routes>
         </MoviesContextProvider>

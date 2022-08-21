@@ -51,23 +51,23 @@ const ActorDetails = ({ actor }) => {
         AKA: 
       </Typography>
       <Typography variant="h6" component="p">
-        {actor.also_known_as}
+        &emsp; {actor.also_known_as[0]}<br></br>
+        &emsp; {actor.also_known_as[1]}<br></br>
+        &emsp; {actor.also_known_as[2]}<br></br>
       </Typography>
       <Typography variant="h5" component="h3">
         From: <Typography variant="h6" component="p">
-        {actor.aplace_of_birth}
+        &emsp; {actor.place_of_birth}
       </Typography>
       </Typography>
       
-      <Typography variant="h6" component="p">
-        {actor.also_known_as}
-      </Typography>
+      
       <Typography variant="h5" component="h3">
         Biography
       </Typography>
 
       <Typography variant="h6" component="p">
-        {actor.biography}
+        &emsp; {actor.biography}
       </Typography>
      
       
